@@ -10,6 +10,24 @@ public class HeroAttribute {
         this.dexterity = dexterity;
         this.intelligence = intelligence;
     }
+
+    public HeroAttribute add(HeroAttribute other) {
+        return new HeroAttribute(this.strength+other.strength,
+                this.dexterity+ other.dexterity,
+                this.intelligence+ other.intelligence);
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
 }
 
 

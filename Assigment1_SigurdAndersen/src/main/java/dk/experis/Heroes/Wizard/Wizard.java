@@ -7,4 +7,8 @@ public class Wizard extends Hero {
     public Wizard(String name) {
         super(name, new HeroAttribute(1,1,8));
     }
+    @Override
+    public HeroAttribute getLevelUpAttribute() {
+        return new HeroAttribute(1, 1, 5);
+    }
 }
