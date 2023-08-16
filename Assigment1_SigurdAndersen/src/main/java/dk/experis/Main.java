@@ -1,5 +1,8 @@
 package dk.experis;
 
+import dk.experis.Equipment.*;
+import dk.experis.Exceptions.InvalidArmorException;
+import dk.experis.Exceptions.InvalidWeaponException;
 import dk.experis.Heroes.Archer.Archer;
 import dk.experis.Heroes.HeroAttribute;
 import dk.experis.Heroes.Wizard.Wizard;
@@ -7,27 +10,33 @@ import dk.experis.Heroes.Wizard.Wizard;
 public class Main {
     public static void main(String[] args) {
 
-        Wizard wizard = new Wizard("steve");
+        Wizard wizard = new Wizard("Steve");
+        Weapons staff = new Weapons("staff",2,WeaponsType.STAFF,10);
+        Weapons sword = new Weapons("Sword", 2, WeaponsType.SWORD, 5);
+        Armor clothBody = new Armor("Cloth",2,Slot.BODY, ArmorType.CLOTH, new HeroAttribute(1,1,5));
+        Armor clothLegs = new Armor("Cloth",2,Slot.LEGS, ArmorType.CLOTH, new HeroAttribute(1,1,5));
+        Armor clothHead = new Armor("Cloth",2,Slot.HEAD, ArmorType.CLOTH, new HeroAttribute(1,1,5));
 
 
 
         wizard.LevelUp();
-        System.out.println("level is: "+ wizard.getLevel());
-        System.out.println("Strength is: " + wizard.totalAttributes().getStrength());
-        System.out.println("Dex is: " + wizard.totalAttributes().getDexterity());
-        System.out.println("int is: " + wizard.totalAttributes().getIntelligence());
-        System.out.println("");
-        wizard.LevelUp();
-        System.out.println("level is: "+ wizard.getLevel());
-        System.out.println("Strength is: " + wizard.totalAttributes().getStrength());
-        System.out.println("Dex is: " + wizard.totalAttributes().getDexterity());
-        System.out.println("int is: " + wizard.totalAttributes().getIntelligence());
-        System.out.println("");
-        wizard.LevelUp();
-        System.out.println("level is: "+ wizard.getLevel());
-        System.out.println("Strength is: " + wizard.totalAttributes().getStrength());
-        System.out.println("Dex is: " + wizard.totalAttributes().getDexterity());
-        System.out.println("int is: " + wizard.totalAttributes().getIntelligence());
+
+
+        try{
+            wizard.equipItem(staff);
+            wizard.equipItem(clothBody);
+            wizard.equipItem(clothHead);
+            wizard.equipItem(clothLegs);
+
+        }catch (InvalidWeaponException | InvalidArmorException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+
+        wizard.display();
+
+
+
 
     }
 }
