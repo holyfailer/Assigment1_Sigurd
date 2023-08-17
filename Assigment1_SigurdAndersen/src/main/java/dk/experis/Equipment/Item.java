@@ -1,9 +1,10 @@
 package dk.experis.Equipment;
 
 public abstract class  Item {
-    String name;
-    int requiredLevel;
-    private Slot slot;
+    private String name;
+    private int requiredLevel;
+
+    private final Slot slot;
 
     public Item(String name, int requiredLevel, Slot slot) {
         this.name = name;
@@ -11,9 +12,7 @@ public abstract class  Item {
         this.slot = slot;
     }
 
-    public String getName() {
-        return name;
-    }
+
 
     public int getRequiredLevel() {
         return requiredLevel;

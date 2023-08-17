@@ -15,16 +15,18 @@ public abstract class Hero {
     private String name;
     private int level=1;
     private HeroAttribute levelAttribute;
-
     private Map<Slot, Item> equippedItems = new HashMap<>();
 
-
+    //Constructor. Sets initial level to 1.
     public Hero(String name, HeroAttribute levelAttribute) {
         this.name = name;
         int level = 1;
         this.levelAttribute = levelAttribute;
     }
 
+    //Equip item method. Equips a given item to the class. Checks using the helper function canEquipWeapon and canEquipArmor,
+    //if the class is able to equip a given item, otherwise throws an exception.
+    //Similarly if the hero is too low a level.
    public void equipItem(Item item) throws InvalidWeaponException, InvalidArmorException {
 
         if (item instanceof Weapons weapons) {
@@ -36,7 +38,7 @@ public abstract class Hero {
         }
        if (item instanceof Armor armor) {
            if (!canEquipArmor(armor.getArmorType())) {
-               throw new InvalidWeaponException("Cant equip that type of Armor");
+               throw new InvalidArmorException("Cant equip that type of Armor");
            } else if (item.getRequiredLevel() > getLevel()) {
                throw  new InvalidArmorException("Too low level for that armor");
            }
@@ -47,6 +49,7 @@ public abstract class Hero {
    }
 
 
+   //Private helper method. Checks if a given class can equip their given weapon types. This is not tested as it is a private function.
     private boolean canEquipWeapon(WeaponsType weaponType) {
         if (this instanceof Wizard) {
             return weaponType == WeaponsType.STAFF || weaponType == WeaponsType.WAND;
@@ -59,7 +62,7 @@ public abstract class Hero {
         }
         return false;
     }
-
+    //same as above but for armor.
     private boolean canEquipArmor(ArmorType armorType) {
         if (this instanceof Wizard) {
             return armorType == ArmorType.CLOTH ;
@@ -74,13 +77,16 @@ public abstract class Hero {
     }
 
 
-
-    public void LevelUp() {
+    //Level function. Increments the level by 1 and add the getLevelAttributes,
+    // which is an overridden method in each specific class that returns a new HeroAttribute with the level up attributes.
+    public void levelUp() {
         level++;
         levelAttribute=levelAttribute.add(getLevelUpAttribute());
 
     }
 
+    //Method that takes the totalAttributes of a hero. First it puts the heroes own basic and level Up attributes
+    // and put it in a locale variable. It then checks all the equipped armor items and add their attribute value to the total.
     public HeroAttribute totalAttributes() {
         HeroAttribute total = levelAttribute;
         for (Item item : equippedItems.values()) {
@@ -90,18 +96,17 @@ public abstract class Hero {
         }
         return total;
     }
-
+    // calculate damage method. Create a locale weaponDamage set to 1 for the case when the hero isn't equipped and damagingAttribute.
     public double damage() {
         int weaponDamage = 1;
         double damagingAttribute=0;
-        Item weapon=null;
-
+        Item localWeapon=null;
+        //it checks the weapon slot if a weapon is available and assigns the weapons damage to weaponDamage.
         if (equippedItems.containsKey(Slot.WEAPON)) {
-             weapon = equippedItems.get(Slot.WEAPON);
-        }if (weapon instanceof Weapons ) {
-            weaponDamage = ((Weapons) weapon).getDamage();
+             localWeapon = equippedItems.get(Slot.WEAPON);
+            weaponDamage = ((Weapons) localWeapon).getDamage();
         }
-
+//It then checks the heroes class and fetches the relevant damagingAttribute.
         if (this instanceof Barbarian) {
             damagingAttribute= totalAttributes().getStrength();
         } else if (this instanceof Wizard) {
@@ -109,10 +114,11 @@ public abstract class Hero {
         } else if (this instanceof Archer || this instanceof Swashbuckler) {
             damagingAttribute= totalAttributes().getDexterity();
         }
-
+//return the damage based on the formula.
         return (weaponDamage * (1 + (damagingAttribute/100) ));
     }
 
+    //Display function that displays the various fields. Uses a stringbuilder.
     public void display(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Hero name: "+getName()+ System.getProperty("line.separator"));
@@ -123,8 +129,6 @@ public abstract class Hero {
         stringBuilder.append("Total Intelligence: "+ totalAttributes().getIntelligence()+ System.getProperty("line.separator"));
         stringBuilder.append("Hero damage: "+ damage()+ System.getProperty("line.separator"));
 
-
-
         System.out.println(stringBuilder);
     }
 
@@ -132,14 +136,17 @@ public abstract class Hero {
         return name;
     }
 
-
-
     public int getLevel() {
         return level;
     }
 
     public HeroAttribute getLevelUpAttribute() {
         return levelAttribute;
+    }
+
+    //simple method that checks if the item hashMap contains a given item. Used for testing.
+    public boolean isItemEquipped(Item item) {
+        return equippedItems.containsValue(item);
     }
 
 
