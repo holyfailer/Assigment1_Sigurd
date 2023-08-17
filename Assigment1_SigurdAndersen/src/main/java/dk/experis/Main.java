@@ -19,6 +19,7 @@ public class Main {
         Armor clothHead = new Armor("Cloth",2,Slot.HEAD, ArmorType.CLOTH, new HeroAttribute(1,1,5));
 
 
+
         wizard.levelUp();
         barbarian.levelUp();
 

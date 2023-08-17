@@ -127,9 +127,9 @@ public abstract class Hero {
         stringBuilder.append("Total Strength: "+ totalAttributes().getStrength()+ System.getProperty("line.separator"));
         stringBuilder.append("Total dexterity: "+ totalAttributes().getDexterity()+ System.getProperty("line.separator"));
         stringBuilder.append("Total Intelligence: "+ totalAttributes().getIntelligence()+ System.getProperty("line.separator"));
-        stringBuilder.append("Hero damage: "+ damage()+ System.getProperty("line.separator"));
+        stringBuilder.append("Hero damage: "+ damage());
 
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     public String getName() {

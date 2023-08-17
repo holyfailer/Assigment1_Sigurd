@@ -6,6 +6,9 @@ import dk.experis.Exceptions.InvalidWeaponException;
 import dk.experis.Heroes.Wizard.Wizard;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HeroTest {
@@ -118,7 +121,31 @@ class HeroTest {
         assertEquals(expected,actual);
 
     }
+/*
+//Should be working, but there is a difference in line separators that i cant find.
+    @Test
+    public void display(){
 
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
 
+        Wizard wizard = new Wizard("Steve");
+
+        wizard.display();
+
+        String expected = "Hero name: Steve\n" +
+                "Hero class: Wizard\n" +
+                "Hero level: 1\n" +
+                "Total Strength: 1\n" +
+                "Total dexterity: 1\n" +
+                "Total Intelligence: 8\n" +
+                "Hero damage: 1.08"
+                ;
+
+        assertEquals(expected, outContent.toString());
+
+    }
+
+*/
 
 }
