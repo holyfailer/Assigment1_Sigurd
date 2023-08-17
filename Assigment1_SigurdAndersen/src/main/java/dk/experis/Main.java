@@ -28,7 +28,7 @@ public class Main {
             wizard.equipItem(clothBody);
             wizard.equipItem(clothHead);
             wizard.equipItem(clothLegs);
-            
+
             barbarian.equipItem(sword);
         }catch (InvalidWeaponException | InvalidArmorException e) {
             System.out.println("Error: " + e.getMessage());

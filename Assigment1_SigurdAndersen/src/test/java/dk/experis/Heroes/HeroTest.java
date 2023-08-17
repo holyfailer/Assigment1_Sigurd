@@ -70,14 +70,17 @@ class HeroTest {
     public void damage_shouldReturn108_EquippedWizard() {
         Wizard wizard = new Wizard("Steve");
         Weapons staff = new Weapons("staff",1, WeaponsType.STAFF,100);
+        Armor clothBody = new Armor("Cloth",1,Slot.BODY, ArmorType.CLOTH, new HeroAttribute(1,1,100));
         try {
             wizard.equipItem(staff);
+            wizard.equipItem(clothBody);
         }catch (Exception e) {
             fail("Shouldnt happen:" + e.getMessage());
         }
 
-
-        double expected= 108;
+        double intAttributeWithEquipment= 108;
+        double weaponDamage= 100;
+        double expected= weaponDamage*(1+ (intAttributeWithEquipment/100));
         double actual = wizard.damage();
 
         assertEquals(expected,actual);
