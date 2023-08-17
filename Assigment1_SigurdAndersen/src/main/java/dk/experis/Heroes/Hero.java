@@ -140,6 +140,7 @@ public abstract class Hero {
         return level;
     }
 
+    //gets the attributes from leveling up. Overridden in specific hero classes
     public HeroAttribute getLevelUpAttribute() {
         return levelAttribute;
     }
