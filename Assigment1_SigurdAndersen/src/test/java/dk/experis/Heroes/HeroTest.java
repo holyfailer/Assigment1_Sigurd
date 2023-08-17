@@ -75,7 +75,7 @@ class HeroTest {
             wizard.equipItem(staff);
             wizard.equipItem(clothBody);
         }catch (Exception e) {
-            fail("Shouldnt happen:" + e.getMessage());
+            fail("Shouldn't happen:" + e.getMessage());
         }
 
         double intAttributeWithEquipment= 108;
@@ -107,7 +107,7 @@ class HeroTest {
         try {
             wizard.equipItem(clothBody);
         }catch (Exception e) {
-            fail("Shouldnt happen:" + e.getMessage());
+            fail("Shouldn't happen:" + e.getMessage());
         }
         int startingAttribute = 8;
         int equipmentAttribute = 5;
