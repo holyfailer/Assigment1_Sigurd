@@ -8,5 +8,4 @@ The archer gets a bow.
 
 They are then displayed to the console.
 
-There is a test file can can be run. They all pass except for a test for the display method. 
-It fails because there is a different in line separators that i couldn't figure out to get them be the same. I have commented the test out.
+There is a test file can can be run. They all pass. All method have been tested except for getters and constructors.
