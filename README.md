@@ -8,4 +8,5 @@ The archer gets a bow.
 
 They are then displayed to the console.
 
-There is a test file can can be run. They all pass. All method have been tested except for getters and constructors.
+There is two test files can can be run, one for the Hero class and one for HeroAttribute class. 
+They all pass. All method have been tested except for getters and constructors.
