@@ -71,6 +71,40 @@ class HeroTest {
     }
 
     @Test
+    public void equipItem_ShouldThrowInvalidWeaponExceptionForWrongWeaponType(){
+        //arrange
+        Wizard wizard = new Wizard("Steve");
+        Weapons sword = new Weapons("sword",2, WeaponsType.SWORD,10);
+        //act
+        try{
+            wizard.equipItem(sword);
+            fail("Should have thrown exception InvalidWeapon");
+        }catch (InvalidWeaponException  | InvalidArmorException e) {
+            //assert
+            assertEquals("Cant equip that type of weapon",e.getMessage());
+        }
+
+
+    }
+
+    @Test
+    public void equipItem_ShouldThrowInvalidArmorExceptionForWrongArmorType(){
+        //arrange
+        Wizard wizard = new Wizard("Steve");
+       Armor plate = new Armor("plate",1,Slot.HEAD,ArmorType.PLATE,new HeroAttribute(1,1,1));
+        //act
+        try{
+            wizard.equipItem(plate);
+            fail("Should have thrown exception InvalidWeapon");
+        }catch (InvalidWeaponException  | InvalidArmorException e) {
+            //assert
+            assertEquals("Cant equip that type of armor",e.getMessage());
+        }
+
+
+    }
+
+    @Test
     public void equipItem_ShouldThrowInvalidArmorExceptionForTooLowLevel(){
         //arrange
         Wizard wizard = new Wizard("Steve");

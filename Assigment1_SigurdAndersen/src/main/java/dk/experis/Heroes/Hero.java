@@ -37,7 +37,7 @@ public abstract class Hero {
         }
        if (item instanceof Armor armor) {
            if (!canEquipArmor(armor.getArmorType())) {
-               throw new InvalidArmorException("Cant equip that type of Armor");
+               throw new InvalidArmorException("Cant equip that type of armor");
            } else if (item.getRequiredLevel() > getLevel()) {
                throw  new InvalidArmorException("Too low level for that armor");
            }
