@@ -46,9 +46,9 @@ public class Main {
         }
 
         wizard.display();
-
+            System.out.println();
         barbarian.display();
-
+            System.out.println();
         archer.display();
 
 

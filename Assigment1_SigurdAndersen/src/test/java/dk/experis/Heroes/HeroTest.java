@@ -230,8 +230,7 @@ class HeroTest {
         assertEquals(expected,actual);
 
     }
-/*
-//Should be working, but there is a difference in line separators that I cant find.
+
     @Test
     public void display(){
 
@@ -242,19 +241,19 @@ class HeroTest {
 
         wizard.display();
 
-        String expected = "Hero name: Steve\n" +
-                "Hero class: Wizard\n" +
-                "Hero level: 1\n" +
-                "Total Strength: 1\n" +
-                "Total dexterity: 1\n" +
-                "Total Intelligence: 8\n" +
-                "Hero damage: 1.08"
+        String expected = "Hero name: Steve" +System.getProperty("line.separator")+
+                "Hero class: Wizard"+System.getProperty("line.separator") +
+                "Hero level: 1"+System.getProperty("line.separator") +
+                "Total Strength: 1"+System.getProperty("line.separator") +
+                "Total dexterity: 1"+System.getProperty("line.separator") +
+                "Total Intelligence: 8"+System.getProperty("line.separator") +
+                "Hero damage: 1.08"+System.getProperty("line.separator")
                 ;
 
         assertEquals(expected, outContent.toString());
 
     }
 
-*/
+
 
 }

@@ -17,16 +17,15 @@ public abstract class Hero {
     private HeroAttribute levelAttribute;
     private Map<Slot, Item> equippedItems = new HashMap<>();
 
-    //Constructor. Sets initial level to 1.
+
     public Hero(String name, HeroAttribute levelAttribute) {
         this.name = name;
-        int level = 1;
         this.levelAttribute = levelAttribute;
     }
 
     //Equip item method. Equips a given item to the class. Checks using the helper function canEquipWeapon and canEquipArmor,
     //if the class is able to equip a given item, otherwise throws an exception.
-    //Similarly if the hero is too low a level.
+    //Similarly, if the hero is too low a level.
    public void equipItem(Item item) throws InvalidWeaponException, InvalidArmorException {
 
         if (item instanceof Weapons weapons) {
@@ -100,7 +99,7 @@ public abstract class Hero {
     public double damage() {
         int weaponDamage = 1;
         double damagingAttribute=0;
-        Item localWeapon=null;
+        Item localWeapon;
         //it checks the weapon slot if a weapon is available and assigns the weapons damage to weaponDamage.
         if (equippedItems.containsKey(Slot.WEAPON)) {
              localWeapon = equippedItems.get(Slot.WEAPON);
@@ -118,7 +117,7 @@ public abstract class Hero {
         return (weaponDamage * (1 + (damagingAttribute/100) ));
     }
 
-    //Display function that displays the various fields. Uses a stringbuilder.
+    //Display function that displays the various fields. Uses a string builder.
     public void display(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Hero name: "+getName()+ System.getProperty("line.separator"));
@@ -129,7 +128,7 @@ public abstract class Hero {
         stringBuilder.append("Total Intelligence: "+ totalAttributes().getIntelligence()+ System.getProperty("line.separator"));
         stringBuilder.append("Hero damage: "+ damage()+System.getProperty("line.separator"));
 
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     public String getName() {
